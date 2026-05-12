@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID x SIRIAI — 콘텐츠 가이드</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f5f3;
+      --ink: #0d0d0d;
+      --mid: #555555;
+      --dim: #909090;
+      --faint: rgba(13,13,13,0.08);
+      --rule: rgba(13,13,13,0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-top-item {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.38em;
+      color: var(--mid);
+      text-transform: uppercase;
+    }
+
+    .hero-display-wrap {
+      position: relative;
+      padding: 0 48px;
+    }
+
+    .hero-display {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(64px, 7vw, 96px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 0.94;
+      color: var(--ink);
+      padding-top: 28px;
+      padding-bottom: 4px;
+    }
+    .hero-display .line-x { display: block; }
+
+    .hero-overflow {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(56px, 6vw, 80px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.9;
+      color: var(--faint);
+      text-align: right;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .hero-info-row {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin-top: 24px;
+    }
+    .hero-info-cell {
+      flex: 1;
+      padding: 18px 0;
+    }
+    .hero-info-cell + .hero-info-cell {
+      border-left: 1px solid var(--rule);
+      padding-left: 24px;
+    }
+    .hero-info-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.36em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .hero-info-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-desc-wrap {
+      padding: 36px 48px 44px;
+      border-top: 1px solid var(--rule);
+      margin-top: 24px;
+    }
+    .hero-desc {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.9;
+      letter-spacing: -0.01em;
+      max-width: 800px;
+    }
+
+    /* ── FORMAT SELECT ── */
+    .format-select {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--rule);
+    }
+    .format-select-header {
+      padding: 22px 48px 16px;
+      border-top: 1px solid var(--rule);
+    }
+    .format-select-label {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-transform: none;
+    }
+    .format-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--rule);
+    }
+    .format-card {
+      padding: 32px 48px 36px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .format-card + .format-card { border-left: 1px solid var(--rule); }
+    .format-card.active { background: var(--ink); }
+
+    .format-card-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      color: var(--dim);
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+    .format-card.active .format-card-num { color: rgba(255,255,255,0.35); }
+
+    .format-card-title {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+    .format-card.active .format-card-title { color: #fff; }
+
+    .format-card-desc {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      transition: color 0.2s;
+    }
+    .format-card.active .format-card-desc { color: rgba(255,255,255,0.5); }
+
+    .format-card-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--dim);
+      transition: color 0.2s;
+    }
+    .format-card.active .format-card-indicator { color: rgba(255,255,255,0.55); }
+    .format-card-indicator::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: currentColor;
+      display: block;
+    }
+    .format-card:not(.active) .format-card-indicator::after { content: '선택'; }
+    .format-card.active .format-card-indicator::after { content: '선택됨'; }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── ACCORDION ── */
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+
+    .accordion-item { border-bottom: 1px solid var(--rule); }
+
+    .accordion-head {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 48px;
+      cursor: pointer;
+      max-width: 1100px;
+      margin: 0 auto;
+      transition: background 0.12s;
+      min-height: 80px;
+    }
+    .accordion-head:hover { background: rgba(13,13,13,0.03); }
+
+    .acc-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--faint);
+      letter-spacing: -0.03em;
+      min-width: 76px;
+      line-height: 1;
+      padding: 24px 0;
+    }
+
+    .acc-info { flex: 1; min-width: 0; padding: 24px 0; }
+
+    .acc-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .acc-summary {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--mid);
+    }
+
+    .acc-arrow {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s;
+    }
+    .accordion-item.open .acc-arrow { transform: rotate(180deg); }
+    .acc-arrow svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--mid);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── BODY ── */
+    .accordion-body {
+      display: none;
+      border-top: 1px solid var(--rule);
+      background: rgba(13,13,13,0.02);
+    }
+    .accordion-item.open .accordion-body { display: block; }
+
+    .body-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px 44px;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 0;
+    }
+
+    /* ── DETAIL BLOCKS ── */
+    .detail-block {
+      padding-top: 32px;
+      padding-right: 40px;
+    }
+    .detail-block + .detail-block {
+      border-left: 1px solid var(--rule);
+      padding-left: 40px;
+      padding-right: 0;
+    }
+
+    .detail-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.46em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .concept-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: #3a3a3a;
+      line-height: 2;
+    }
+
+    /* ── REFERENCE ── */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .ref-card {
+      position: relative;
+      background: var(--faint);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      transition: border-color 0.18s;
+    }
+    .ref-card:hover { border-color: rgba(13,13,13,0.4); }
+
+    .ref-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(30%);
+      opacity: 0.88;
+      transition: opacity 0.18s, filter 0.18s;
+    }
+    .ref-card:hover img { opacity: 1; filter: grayscale(0%); }
+
+    .ref-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,13,13,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
+    .ref-card:hover .ref-overlay { opacity: 1; }
+
+    .ref-play {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(245,245,243,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ref-play svg { width: 10px; height: 10px; fill: var(--bg); margin-left: 2px; }
+
+    .ref-num {
+      position: absolute;
+      bottom: 7px;
+      right: 9px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 8px;
+      font-weight: 500;
+      color: rgba(13,13,13,0.4);
+      letter-spacing: 0.14em;
+    }
+
+    .ref-empty {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--dim);
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── GUIDE ── */
+    .guide-list { display: flex; flex-direction: column; }
+
+    .guide-item {
+      display: flex;
+      gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14px;
+      font-weight: 400;
+      color: #3a3a3a;
+      line-height: 1.9;
+    }
+    .guide-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .guide-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--dim);
+      margin-top: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid var(--rule);
+      overflow: hidden;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .footer-top-item {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.36em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+    .footer-top-link {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: var(--ink);
+      transition: opacity 0.2s;
+    }
+    .footer-top-link:hover { opacity: 0.6; }
+
+    .footer-main {
+      padding: 20px 48px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .footer-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      color: var(--ink);
+    }
+    .footer-brand .x { color: var(--dim); font-weight: 300; margin: 0 4px; }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      padding-bottom: 4px;
+    }
+    .footer-note {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      color: var(--dim);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+    .footer-arrow {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-arrow svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--mid);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-portfolio {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-portfolio-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.38em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+    .footer-portfolio-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: opacity 0.18s;
+    }
+    .footer-portfolio-link:hover { opacity: 0.5; }
+    .footer-portfolio-link svg { width: 12px; height: 12px; }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+
+  <div class="hero-top">
+    <span class="hero-top-item">ID HOSPITAL</span>
+    <span class="hero-top-item">Content Guide</span>
+    <span class="hero-top-item">SIRIAI — 2026</span>
+  </div>
+
+  <div class="hero-display-wrap">
+    <h1 class="hero-display">
+      ID HOSPITAL<span class="line-x">×</span>SIRIAI.
+    </h1>
+    <div class="hero-overflow">Guide.</div>
+  </div>
+
+  <div class="hero-desc-wrap" style="padding-left:48px; padding-right:48px;">
+    <p class="hero-desc">
+      ID 성형외과 캠페인 참여 인플루언서용 공식 가이드라인입니다.<br>
+      인플루언서들의 제작 편의와 콘텐츠 퀄리티를 위해, 제공되는 각각의 포맷 내에서<br>본인에게 가장 잘 맞는 방식을 선택하여 진행할 수 있도록 안내할 예정입니다.<br>
+      아래 가이드라인 구성안을 확인해 주세요.
+    </p>
+  </div>
+
+</div>
+
+<!-- ── FORMAT SELECT ── -->
+<div class="format-select">
+  <div class="format-cards">
+    <button class="format-card active" onclick="switchTab('procedure', this)">
+      <p class="format-card-num">01</p>
+      <p class="format-card-title">시술·성형<br>진행형</p>
+      <p class="format-card-desc">시술 또는 성형을 직접<br>진행하며 제작하는 포맷</p>
+      <span class="format-card-indicator"></span>
+    </button>
+    <button class="format-card" onclick="switchTab('nonvisit', this)">
+      <p class="format-card-num">02</p>
+      <p class="format-card-title">비방문<br>정보·브랜딩형</p>
+      <p class="format-card-desc">병원 방문 없이 정보 전달<br>또는 브랜딩 중심 포맷</p>
+      <span class="format-card-indicator"></span>
+    </button>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div id="procedure" class="content-section active"></div>
+<div id="nonvisit" class="content-section"></div>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div class="footer-top">
+    <span class="footer-top-item">SIRIAI Portfolio</span>
+    <a class="footer-top-link" href="https://featpaper.com/v/7jqtPGf2" target="_blank" rel="noopener">featpaper.com/v/7jqtPGf2 ↗</a>
+  </div>
+  <div class="footer-main">
+    <p class="footer-brand">ID HOSPITAL<span class="x">×</span>SIRIAI.</p>
+    <div class="footer-right">
+      <span class="footer-note">2026 Campaign</span>
+      <div class="footer-arrow">
+        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TAB_NOTES = {
+  procedure: '시술 또는 성형을 직접 진행하며 제작하는 포맷입니다.',
+  nonvisit: '병원 방문 없이 정보 전달 또는 브랜딩 중심으로 제작하는 포맷입니다.'
+};
+
+const DATA = {
+  procedure: [
+    {
+      title: '내 콤플렉스 탈출',
+      summary: '평소 외모 고민 + 상담 과정 롱폼 릴스',
+      concept: '평소 가졌던 외모 고민을 솔직하게 털어놓고, 원장님과의 상담 과정을 담은 롱폼 릴스입니다. 전문적인 조언과 상담 장면을 강조하여 병원에 대한 신뢰를 자연스럽게 전달합니다.',
+      refs: [{ id: 'lsqB--PTYVU', url: 'https://www.youtube.com/shorts/lsqB--PTYVU' }],
+      guide: [
+        '평소 가졌던 외모 고민을 솔직하게 털어놓는 인트로로 시작',
+        '원장님과의 실제 상담 장면을 담고, 전문적인 조언 부분을 자막·클로즈업으로 강조',
+        '시술 전후의 감정 변화를 진정성 있게 전달하며 마무리'
+      ]
+    },
+    {
+      title: '관리의 정석 (A to Z)',
+      summary: '시술 당일~회복까지 사후 관리 루틴 콘텐츠',
+      concept: '시술 당일뿐만 아니라 병원에서 알려준 사후 관리법(붓기 관리, 식단 등)을 인플루언서만의 꿀팁과 섞어 \'자기관리\'로 풀어냅니다. 병원의 세심한 케어와 자기관리 무드를 자연스럽게 연결합니다.',
+      refs: [
+        { id: 'EqdAy5O9DAg', url: 'https://www.youtube.com/shorts/EqdAy5O9DAg' },
+        { id: 'BrwU4GXWmxo', url: 'https://www.youtube.com/shorts/BrwU4GXWmxo' }
+      ],
+      guide: [
+        '시술 당일 루틴부터 회복까지의 전 과정을 브이로그 형식으로 구성',
+        '병원에서 안내받은 사후 관리법에 본인만의 꿀팁을 더해 정보성 강화',
+        '병원의 세심한 케어와 본인의 자기관리 무드를 자연스럽게 연결'
+      ]
+    },
+    {
+      title: '성형 복구 프로젝트 (재수술)',
+      summary: '타 병원 실패 → ID에서 해결하는 재수술 과정',
+      concept: '타 병원에서의 실패 또는 재수술이 필요한 상황을 ID 성형외과에서 해결하는 과정을 담습니다. ID의 기술적 우위와 디테일한 교정 능력을 중심으로 강조합니다.',
+      refs: [
+        { id: 'pFPi208b2mM', url: 'https://www.youtube.com/shorts/pFPi208b2mM' },
+        { id: 'ztTkO8kyTJc', url: 'https://www.youtube.com/shorts/ztTkO8kyTJc' }
+      ],
+      guide: [
+        '기존 수술 결과에 대한 솔직한 이야기로 시작 (불안감, 불만족 등)',
+        'ID를 선택하게 된 이유 — 재수술 전문성, 디테일한 교정 능력 강조',
+        '교정 결과를 전후 비교로 명확하게 전달'
+      ]
+    },
+    {
+      title: '부모님·지인 효도 성형 브이로그',
+      summary: '내가 믿고 추천하는 곳, 직접 동행 브이로그',
+      concept: '인플루언서 본인이 아닌 부모님이나 지인을 위해 병원을 꼼꼼히 따져보고 시술·수술을 함께하는 과정을 담습니다. \'내가 믿고 추천하는 곳\'이라는 메시지로 브랜드 신뢰도를 높입니다.',
+      refs: [
+        { id: '7jRXMObl_ok', url: 'https://www.youtube.com/shorts/7jRXMObl_ok' },
+        { id: '3Xz-3vANnbQ', url: 'https://www.youtube.com/shorts/3Xz-3vANnbQ' },
+        { id: 'SOgXX9zbZBU', url: 'https://www.youtube.com/shorts/SOgXX9zbZBU' }
+      ],
+      guide: [
+        '내가 아닌 부모님/지인을 위해 병원을 직접 알아보는 과정부터 시작',
+        'ID를 선택한 구체적인 이유 언급 (신뢰, 안전성, 케어 시스템)',
+        '\'내가 직접 믿고 추천하는 병원\'이라는 메시지를 자연스럽게 전달'
+      ]
+    },
+    {
+      title: '시술 후 7일 무보정 릴스',
+      summary: '매일 동일 각도로 기록하는 리얼 회복 과정',
+      concept: '시술 직후부터 붓기가 빠지는 과정을 매일 똑같은 각도·기본 카메라로 기록합니다. 보정 없는 리얼한 변화 과정을 통해 팔로워로부터 병원에 대한 확신을 이끌어냅니다.',
+      refs: [{ id: 'nVk0lGH4kdA', url: 'https://www.youtube.com/shorts/nVk0lGH4kdA' }],
+      guide: [
+        'Day 0(시술 직후)부터 매일 동일 조명·각도로 기록 — 일관성이 핵심',
+        '보정·필터 없이 날것의 변화 과정 공유 — 리얼함이 신뢰를 만든다',
+        '7일 분량을 타임랩스 또는 슬라이드 형식으로 편집해 완성도 있게 마무리'
+      ]
+    }
+  ],
+  nonvisit: [
+    {
+      title: '성형 전문가가 분석한 내 얼굴',
+      summary: 'ID 전문의 얼굴 분석 피드백 리액션 콘텐츠',
+      concept: '전문가의 분석 피드백을 토대로 본인 얼굴의 특징과 장점을 소개합니다. \'전문가 피드백에 따르면 제 얼굴은 ~가 특징/장점이래요\' 형식으로 병원을 자연스럽게 언급합니다.',
+      refs: [
+        { id: 'q7DbYbCuwIw', url: 'https://www.youtube.com/shorts/q7DbYbCuwIw' },
+        { id: 'Rc4rMwOvDtY', url: 'https://www.youtube.com/watch?v=Rc4rMwOvDtY' }
+      ],
+      guide: [
+        'ID 전문의에게 본인 얼굴 분석을 의뢰하고 피드백 내용 소개',
+        '단점보다 특징·장점 중심으로 긍정적인 무드 유지',
+        '\'병원 가기 전 이런 분석도 해준다\'는 ID의 세심함을 자연스럽게 전달'
+      ]
+    },
+    {
+      title: '뷰티 트렌드 리포트',
+      summary: '2026 트렌드 정보 + ID 원장 코멘트 매거진 형식',
+      concept: '\'2026년 유행하는 얼굴형/눈매/코\' 등을 주제로 정보를 전달하면서 ID 성형외과의 실제 사례나 원장님 코멘트를 인용합니다. 트렌디한 정보 전달로 브랜드 권위를 확립합니다.',
+      refs: [
+        { id: 'fTPvnbNZNGU', url: 'https://www.youtube.com/shorts/fTPvnbNZNGU' },
+        { id: 'epCkZPiP0zs', url: 'https://www.youtube.com/shorts/epCkZPiP0zs' }
+      ],
+      guide: [
+        '2026 트렌드 정보를 매거진 무드로 정리하여 정보성 콘텐츠로 구성',
+        'ID 원장님의 실제 코멘트나 사례를 인용해 전문성 강화',
+        '트렌드 + 병원 권위를 자연스럽게 연결하여 마무리'
+      ]
+    },
+    {
+      title: '내가 ID 성형외과 가면 이런 상담 받을 듯',
+      summary: '가상 상담 흐름으로 병원 강점을 체험시키는 콘텐츠',
+      concept: '\'만약 내가 ID 성형외과에 간다면?\' 실제 상담받는 듯한 흐름으로 병원의 강점을 자연스럽게 체험시키는 콘텐츠입니다.',
+      refs: [],
+      guide: [
+        '\'만약 내가 ID 성형외과에 간다면?\' 가정으로 흥미롭게 시작',
+        '실제 상담 흐름대로 구성 — 첫 방문 → 얼굴 분석 → 추천 시술',
+        '병원의 강점(꼼꼼한 상담, 맞춤 제안)이 자연스럽게 드러나도록 연출'
+      ]
+    },
+    {
+      title: '부모님·지인 효도 성형 브이로그',
+      summary: '병원 리서치 → 예약 과정 중심의 비방문형',
+      concept: '부모님이나 지인을 위해 병원을 꼼꼼히 따져보고 예약하는 과정을 담습니다. 방문 없이도 \'내가 믿고 추천하는 곳\' 메시지를 전달합니다.',
+      refs: [
+        { id: '7jRXMObl_ok', url: 'https://www.youtube.com/shorts/7jRXMObl_ok' },
+        { id: '3Xz-3vANnbQ', url: 'https://www.youtube.com/shorts/3Xz-3vANnbQ' },
+        { id: 'SOgXX9zbZBU', url: 'https://www.youtube.com/shorts/SOgXX9zbZBU' }
+      ],
+      guide: [
+        '부모님/지인 성형을 선물하기로 결심하는 과정부터 시작',
+        '병원을 고르는 기준과 ID를 선택한 이유 공유 (리서치 중심)',
+        '예약 완료 후 기대감으로 마무리 — 방문 없이도 신뢰 전달 가능'
+      ]
+    },
+    {
+      title: '"내 미래의 모습" AI 예측 리액션',
+      summary: 'AI 성형 예측 이미지 + 리액션으로 병원 문의 유도',
+      concept: 'ID의 수술 강점을 반영한 성형 후 모습을 AI로 예측하고 리액션합니다. 팔로워의 호기심을 자극해 병원 문의로 자연스럽게 유도합니다.',
+      refs: [
+        { id: 'EPOaPvU1AUI', url: 'https://www.youtube.com/shorts/EPOaPvU1AUI' },
+        { id: 'usv7dPJ_TrY', url: 'https://www.youtube.com/shorts/usv7dPJ_TrY' }
+      ],
+      guide: [
+        'AI 이미지 생성 툴로 성형 후 모습을 예측하고 솔직한 리액션',
+        'ID의 수술 강점(자연스러움, 특정 부위 전문성)을 예측 이미지와 연결',
+        '팔로워 참여 유도 (\'댓글로 너도 해봐\') → 병원 문의로 자연 연결'
+      ]
+    },
+    {
+      title: '성형·시술 후 관리 Q&A',
+      summary: 'ID 차별화 후관리 시스템 집중 소개',
+      concept: 'ID만의 차별화된 후관리 시스템(재방문 횟수, 장비 등)을 집중 소개합니다. \'수술 후가 더 완벽한 병원\'이라는 인식을 심어줍니다.',
+      refs: [
+        { id: 'ZQFVDfKpy-w', url: 'https://www.youtube.com/shorts/ZQFVDfKpy-w' },
+        { id: 'eLowECU7ZjM', url: 'https://www.youtube.com/shorts/eLowECU7ZjM' }
+      ],
+      guide: [
+        '팔로워에게 성형/시술 관련 질문을 사전에 받아 Q&A 형식으로 진행',
+        'ID만의 차별화된 후관리 시스템 (재방문 횟수, 사용 장비 등) 집중 소개',
+        '\'수술 후가 더 완벽한 병원\' 인식을 심어주는 것이 핵심'
+      ]
+    },
+    {
+      title: '코 상담 시 많이 들고 가는 연예인 사진',
+      summary: '연예인 코 유형 분석 → ID 전문 분야 각인',
+      concept: '\'자연스러운 코\' 등 인기 연예인 사진을 분석하고 ID의 전문 분야와 연결합니다. \'자연스러운 코 전문 = ID\'라는 공식을 각인시킵니다.',
+      refs: [
+        { id: 'WsltqbrT7EY', url: 'https://www.youtube.com/shorts/WsltqbrT7EY' },
+        { id: 'ZgfP06QZEfI', url: 'https://www.youtube.com/shorts/ZgfP06QZEfI' }
+      ],
+      guide: [
+        '상담 시 환자들이 많이 들고 오는 연예인 코 유형을 분류하고 분석',
+        '각 코 유형의 특징과 ID가 잘하는 분야 자연스럽게 연결',
+        '\'자연스러운 코 전문 병원 = ID\' 공식 각인, 팔로워 댓글 참여 유도'
+      ]
+    },
+    {
+      title: 'MBTI별 성형 상담',
+      summary: '성격 유형별 외모 고민 해결 상황극',
+      concept: '성격 유형별로 외모 고민을 해결하는 방식과 상담 차이를 상황극으로 표현합니다. 예: \'완벽주의 ISTJ가 선택한 ID 성형외과의 안전 시스템\'',
+      refs: [
+        { id: '_8fP6li8qPU', url: 'https://www.youtube.com/shorts/_8fP6li8qPU' },
+        { id: 'N1C0wSNf6yc', url: 'https://www.youtube.com/shorts/N1C0wSNf6yc' },
+        { id: 'K-7vs4q83UM', url: 'https://www.youtube.com/shorts/K-7vs4q83UM' }
+      ],
+      guide: [
+        '성격 유형별로 외모 고민 해결 방식을 상황극으로 표현',
+        '예: 완벽주의 ISTJ → ID의 안전 시스템 강조 / 즉흥적 ENFP → 빠른 상담 강조',
+        '다양한 MBTI 커버로 도달률 극대화, 공감을 통해 ID와 자연스럽게 연결'
+      ]
+    }
+  ]
+};
+
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
+function thumb(id) { return 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'; }
+
+function renderSection(type) {
+  var section = document.getElementById(type);
+  section.innerHTML = DATA[type].map(function(item, idx) {
+    var refsHtml = item.refs.length > 0
+      ? '<div class="ref-grid">' + item.refs.map(function(r, i) {
+          return '<a class="ref-card" href="' + r.url + '" target="_blank" rel="noopener">'
+            + '<img src="' + thumb(r.id) + '" alt="ref ' + (i+1) + '" loading="lazy">'
+            + '<div class="ref-overlay"><div class="ref-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>'
+            + '<span class="ref-num">' + pad(i+1) + '</span>'
+            + '</a>';
+        }).join('') + '</div>'
+      : '<p class="ref-empty">레퍼런스 영상 준비 중</p>';
+
+    var guideHtml = '<div class="guide-list">'
+      + item.guide.map(function(g) {
+          return '<div class="guide-item"><span class="guide-dot"></span><span>' + g + '</span></div>';
+        }).join('') + '</div>';
+
+    return '<div class="accordion-item">'
+      + '<div class="accordion-head" onclick="toggleAcc(this)">'
+      + '<span class="acc-num">' + pad(idx+1) + '</span>'
+      + '<div class="acc-info">'
+      + '<p class="acc-title">' + item.title + '</p>'
+      + '<p class="acc-summary">' + item.summary + '</p>'
+      + '</div>'
+      + '<div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>'
+      + '</div>'
+      + '<div class="accordion-body"><div class="body-inner">'
+      + '<div class="detail-block"><p class="detail-label">Concept</p><p class="concept-text">' + item.concept + '</p></div>'
+      + '<div class="detail-block"><p class="detail-label">Reference</p>' + refsHtml + '</div>'
+      + '<div class="detail-block"><p class="detail-label">Guide</p>' + guideHtml + '</div>'
+      + '</div></div></div>';
+  }).join('');
+}
+
+function toggleAcc(head) {
+  var item = head.closest('.accordion-item');
+  var isOpen = item.classList.contains('open');
+  item.closest('.content-section').querySelectorAll('.accordion-item').forEach(function(i) { i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+function switchTab(type, btn) {
+  document.querySelectorAll('.format-card').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.content-section').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById(type).classList.add('active');
+  document.querySelectorAll('.accordion-item').forEach(function(i) { i.classList.remove('open'); });
+}
+
+renderSection('procedure');
+renderSection('nonvisit');
+</script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시리아이 · 틈결 운영 — INTERNAL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f5f3;
+      --ink: #0d0d0d;
+      --mid: rgba(13,13,13,0.45);
+      --dim: rgba(13,13,13,0.22);
+      --faint: rgba(13,13,13,0.10);
+      --rule: rgba(13,13,13,0.14);
+      --green: #2d7a4f;
+      --green-dot: #3a9e68;
+      --amber: #b45309;
+      --amber-dot: #d97706;
+      --blue: #1e4f8c;
+      --blue-dot: #2563eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 0 80px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 44px 28px 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .header-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .badge-internal {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 2px 7px;
+    }
+
+    .header-sub {
+      font-size: 12px;
+      color: var(--mid);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 32px 28px 0;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-green  { background: var(--green-dot); }
+    .dot-amber  { background: var(--amber-dot); }
+    .dot-blue   { background: var(--blue-dot); }
+
+    .section-label-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── CARD ── */
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.18s, border-color 0.18s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      border-color: rgba(13,13,13,0.28);
+      box-shadow: 0 2px 12px rgba(13,13,13,0.07);
+    }
+
+    .card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: var(--mid);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      padding: 3px 9px;
+      white-space: nowrap;
+    }
+    .tag-green {
+      background: rgba(45,122,79,0.08);
+      color: var(--green);
+    }
+    .tag-amber {
+      background: rgba(180,83,9,0.08);
+      color: var(--amber);
+    }
+    .tag-blue {
+      background: rgba(30,79,140,0.08);
+      color: var(--blue);
+    }
+
+    .arrow {
+      font-size: 14px;
+      color: var(--dim);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 48px 28px 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <span class="header-title">시리아이 · 틈결 운영</span>
+      <span class="badge-internal">Internal</span>
+    </div>
+    <div class="header-sub">가이드 링크 관리 · Iconic Movement</div>
+  </div>
+
+  <!-- SECTION 1: 콘텐츠 가이드 -->
+  <div class="section">
+    <div class="section-label">
+      <span class="dot dot-green"></span>
+      <span class="section-label-text">콘텐츠 가이드</span>
+    </div>
+
+    <a class="card" href="./guide-1.html">
+      <div class="card-body">
+        <div class="card-title">ID 제공용</div>
+        <div class="card-sub">ID × SIRIAI — 가이드라인</div>
+      </div>
+      <div class="card-right">
+        <span class="tag tag-green">가이드 1</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="./guide-2.html">
+      <div class="card-body">
+        <div class="card-title">시술 · 수술 진행형</div>
+        <div class="card-sub">ID × SIRIAI — 가이드라인</div>
+      </div>
+      <div class="card-right">
+        <span class="tag tag-green">가이드 2</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="./guide-3.html">
+      <div class="card-body">
+        <div class="card-title">비방문 정보 · 브랜딩형</div>
+        <div class="card-sub">ID × SIRIAI — 가이드라인</div>
+      </div>
+      <div class="card-right">
+        <span class="tag tag-green">가이드 3</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer">SIRIAI · Iconic Movement · 2026</div>
+
+</div>
+</body>
+</html>
