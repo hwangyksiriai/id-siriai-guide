@@ -233,10 +233,46 @@
 
     /* ── DIVIDER ── */
     .section-divider {
-      max-width: 640px;
+      max-width: 1100px;
       margin: 0 auto;
       height: 1px;
       background: var(--rule);
+    }
+
+    /* ── 제목 카드 ── */
+    .type-card {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px 32px;
+    }
+    .type-card-inner {
+      background: var(--ink);
+      border-radius: 12px;
+      padding: 36px 44px;
+    }
+    .type-card-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 14px;
+    }
+    .type-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+    }
+    .type-card-desc {
+      margin-top: 16px;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
     }
 
     /* ── ACCORDION ── */
@@ -248,48 +284,47 @@
     .accordion-head {
       display: flex;
       align-items: center;
-      gap: 0;
-      padding: 0 28px;
+      padding: 0 48px;
       cursor: pointer;
-      max-width: 640px;
+      max-width: 1100px;
       margin: 0 auto;
       transition: background 0.12s;
-      min-height: 64px;
+      min-height: 80px;
     }
     .accordion-head:hover { background: rgba(13,13,13,0.03); }
 
     .acc-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 700;
       color: var(--faint);
       letter-spacing: -0.03em;
-      min-width: 58px;
+      min-width: 72px;
       line-height: 1;
-      padding: 20px 0;
+      padding: 24px 0;
     }
 
-    .acc-info { flex: 1; min-width: 0; padding: 20px 0; }
+    .acc-info { flex: 1; min-width: 0; padding: 24px 0; }
 
     .acc-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 3px;
+      margin-bottom: 5px;
       letter-spacing: -0.01em;
     }
 
     .acc-summary {
-      font-size: 11px;
-      font-weight: 300;
+      font-size: 14px;
+      font-weight: 400;
       color: var(--mid);
     }
 
     .acc-arrow {
       flex-shrink: 0;
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
       border: 1px solid var(--rule);
       display: flex;
       align-items: center;
@@ -298,8 +333,8 @@
     }
     .accordion-item.open .acc-arrow { transform: rotate(180deg); }
     .acc-arrow svg {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       stroke: var(--mid);
       fill: none;
       stroke-width: 1.8;
@@ -316,22 +351,26 @@
     .accordion-item.open .accordion-body { display: block; }
 
     .body-inner {
-      max-width: 640px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 28px 36px;
+      padding: 0 48px 44px;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 0;
     }
 
     /* ── DETAIL BLOCKS ── */
-    .detail-block { padding-top: 28px; }
+    .detail-block { padding-top: 28px; padding-right: 40px; }
     .detail-block + .detail-block {
-      border-top: 1px solid var(--rule);
-      padding-top: 28px;
+      border-left: 1px solid var(--rule);
+      padding-left: 40px;
+      padding-right: 0;
     }
 
     .detail-label {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      letter-spacing: 0.46em;
+      font-size: 9px;
+      letter-spacing: 0.44em;
       color: var(--dim);
       text-transform: uppercase;
       margin-bottom: 14px;
@@ -339,9 +378,9 @@
 
     .concept-text {
       font-size: 13px;
-      font-weight: 300;
-      color: var(--mid);
-      line-height: 2;
+      font-weight: 400;
+      color: #3a3a3a;
+      line-height: 1.9;
     }
 
     /* ── REFERENCE ── */
@@ -355,6 +394,7 @@
       position: relative;
       background: var(--faint);
       border: 1px solid var(--rule);
+      border-radius: 4px;
       overflow: hidden;
       display: block;
       text-decoration: none;
@@ -386,34 +426,32 @@
     .ref-card:hover .ref-overlay { opacity: 1; }
 
     .ref-play {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border: 1px solid rgba(245,245,243,0.8);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .ref-play svg { width: 10px; height: 10px; fill: var(--bg); margin-left: 2px; }
+    .ref-play svg { width: 9px; height: 9px; fill: var(--bg); margin-left: 2px; }
 
     .ref-num {
       position: absolute;
-      bottom: 7px;
-      right: 9px;
+      bottom: 6px;
+      right: 8px;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 8px;
       font-weight: 500;
-      color: rgba(13,13,13,0.4);
+      color: rgba(245,245,243,0.75);
       letter-spacing: 0.14em;
     }
 
     .ref-empty {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 11px;
-      font-weight: 400;
       color: var(--dim);
       font-style: italic;
-      letter-spacing: 0.04em;
     }
 
     /* ── GUIDE ── */
@@ -421,15 +459,24 @@
 
     .guide-item {
       display: flex;
-      gap: 16px;
-      padding: 11px 0;
+      gap: 14px;
+      padding: 12px 0;
       border-bottom: 1px solid var(--rule);
       font-size: 13px;
-      font-weight: 300;
-      color: var(--mid);
+      font-weight: 400;
+      color: #3a3a3a;
       line-height: 1.9;
     }
     .guide-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .guide-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--dim);
+      margin-top: 11px;
+      flex-shrink: 0;
+    }
 
     .guide-dot {
       width: 3px;
@@ -603,31 +650,17 @@
 
 </div>
 
-<!-- ── FORMAT SELECT ── -->
-<div class="format-select">
-  <div class="format-select-header">
-    <span class="format-select-label">포맷 선택 — 하나를 선택해 진행해 주세요</span>
-  </div>
-  <div class="format-cards">
-    <button class="format-card active" onclick="switchTab('procedure', this)">
-      <p class="format-card-num">01</p>
-      <p class="format-card-title">시술·성형<br>진행형</p>
-      <p class="format-card-desc">시술 또는 성형을 직접<br>진행하며 제작하는 포맷</p>
-      <span class="format-card-indicator"></span>
-    </button>
-    <button class="format-card" onclick="switchTab('nonvisit', this)">
-      <p class="format-card-num">02</p>
-      <p class="format-card-title">비방문<br>정보·브랜딩형</p>
-      <p class="format-card-desc">병원 방문 없이 정보 전달<br>또는 브랜딩 중심 포맷</p>
-      <span class="format-card-indicator"></span>
-    </button>
+<div class="section-divider"></div>
+
+<div class="type-card">
+  <div class="type-card-inner">
+    <p class="type-card-label">Format 01</p>
+    <p class="type-card-title">시술·성형 진행형</p>
+    <p class="type-card-desc">시술 또는 성형을 직접 진행하며 제작하는 포맷입니다.<br>다섯 가지 포맷 중 본인에게 맞는 방식을 선택해 진행해 주세요.</p>
   </div>
 </div>
 
-<div class="section-divider"></div>
-
 <div id="procedure" class="content-section active"></div>
-<div id="nonvisit" class="content-section"></div>
 
 <!-- ── FOOTER ── -->
 <div class="footer">
@@ -647,11 +680,6 @@
 </div>
 
 <script>
-const TAB_NOTES = {
-  procedure: '시술 또는 성형을 직접 진행하며 제작하는 포맷입니다.',
-  nonvisit: '병원 방문 없이 정보 전달 또는 브랜딩 중심으로 제작하는 포맷입니다.'
-};
-
 const DATA = {
   procedure: [
     {
@@ -719,119 +747,6 @@ const DATA = {
         '7일 분량을 타임랩스 또는 슬라이드 형식으로 편집해 완성도 있게 마무리'
       ]
     }
-  ],
-  nonvisit: [
-    {
-      title: '성형 전문가가 분석한 내 얼굴',
-      summary: 'ID 전문의 얼굴 분석 피드백 리액션 콘텐츠',
-      concept: '전문가의 분석 피드백을 토대로 본인 얼굴의 특징과 장점을 소개합니다. \'전문가 피드백에 따르면 제 얼굴은 ~가 특징/장점이래요\' 형식으로 병원을 자연스럽게 언급합니다.',
-      refs: [
-        { id: 'q7DbYbCuwIw', url: 'https://www.youtube.com/shorts/q7DbYbCuwIw' },
-        { id: 'Rc4rMwOvDtY', url: 'https://www.youtube.com/watch?v=Rc4rMwOvDtY' }
-      ],
-      guide: [
-        'ID 전문의에게 본인 얼굴 분석을 의뢰하고 피드백 내용 소개',
-        '단점보다 특징·장점 중심으로 긍정적인 무드 유지',
-        '\'병원 가기 전 이런 분석도 해준다\'는 ID의 세심함을 자연스럽게 전달'
-      ]
-    },
-    {
-      title: '뷰티 트렌드 리포트',
-      summary: '2026 트렌드 정보 + ID 원장 코멘트 매거진 형식',
-      concept: '\'2026년 유행하는 얼굴형/눈매/코\' 등을 주제로 정보를 전달하면서 ID 성형외과의 실제 사례나 원장님 코멘트를 인용합니다. 트렌디한 정보 전달로 브랜드 권위를 확립합니다.',
-      refs: [
-        { id: 'fTPvnbNZNGU', url: 'https://www.youtube.com/shorts/fTPvnbNZNGU' },
-        { id: 'epCkZPiP0zs', url: 'https://www.youtube.com/shorts/epCkZPiP0zs' }
-      ],
-      guide: [
-        '2026 트렌드 정보를 매거진 무드로 정리하여 정보성 콘텐츠로 구성',
-        'ID 원장님의 실제 코멘트나 사례를 인용해 전문성 강화',
-        '트렌드 + 병원 권위를 자연스럽게 연결하여 마무리'
-      ]
-    },
-    {
-      title: '내가 ID 성형외과 가면 이런 상담 받을 듯',
-      summary: '가상 상담 흐름으로 병원 강점을 체험시키는 콘텐츠',
-      concept: '\'만약 내가 ID 성형외과에 간다면?\' 실제 상담받는 듯한 흐름으로 병원의 강점을 자연스럽게 체험시키는 콘텐츠입니다.',
-      refs: [],
-      guide: [
-        '\'만약 내가 ID 성형외과에 간다면?\' 가정으로 흥미롭게 시작',
-        '실제 상담 흐름대로 구성 — 첫 방문 → 얼굴 분석 → 추천 시술',
-        '병원의 강점(꼼꼼한 상담, 맞춤 제안)이 자연스럽게 드러나도록 연출'
-      ]
-    },
-    {
-      title: '부모님·지인 효도 성형 브이로그',
-      summary: '병원 리서치 → 예약 과정 중심의 비방문형',
-      concept: '부모님이나 지인을 위해 병원을 꼼꼼히 따져보고 예약하는 과정을 담습니다. 방문 없이도 \'내가 믿고 추천하는 곳\' 메시지를 전달합니다.',
-      refs: [
-        { id: '7jRXMObl_ok', url: 'https://www.youtube.com/shorts/7jRXMObl_ok' },
-        { id: '3Xz-3vANnbQ', url: 'https://www.youtube.com/shorts/3Xz-3vANnbQ' },
-        { id: 'SOgXX9zbZBU', url: 'https://www.youtube.com/shorts/SOgXX9zbZBU' }
-      ],
-      guide: [
-        '부모님/지인 성형을 선물하기로 결심하는 과정부터 시작',
-        '병원을 고르는 기준과 ID를 선택한 이유 공유 (리서치 중심)',
-        '예약 완료 후 기대감으로 마무리 — 방문 없이도 신뢰 전달 가능'
-      ]
-    },
-    {
-      title: '"내 미래의 모습" AI 예측 리액션',
-      summary: 'AI 성형 예측 이미지 + 리액션으로 병원 문의 유도',
-      concept: 'ID의 수술 강점을 반영한 성형 후 모습을 AI로 예측하고 리액션합니다. 팔로워의 호기심을 자극해 병원 문의로 자연스럽게 유도합니다.',
-      refs: [
-        { id: 'EPOaPvU1AUI', url: 'https://www.youtube.com/shorts/EPOaPvU1AUI' },
-        { id: 'usv7dPJ_TrY', url: 'https://www.youtube.com/shorts/usv7dPJ_TrY' }
-      ],
-      guide: [
-        'AI 이미지 생성 툴로 성형 후 모습을 예측하고 솔직한 리액션',
-        'ID의 수술 강점(자연스러움, 특정 부위 전문성)을 예측 이미지와 연결',
-        '팔로워 참여 유도 (\'댓글로 너도 해봐\') → 병원 문의로 자연 연결'
-      ]
-    },
-    {
-      title: '성형·시술 후 관리 Q&A',
-      summary: 'ID 차별화 후관리 시스템 집중 소개',
-      concept: 'ID만의 차별화된 후관리 시스템(재방문 횟수, 장비 등)을 집중 소개합니다. \'수술 후가 더 완벽한 병원\'이라는 인식을 심어줍니다.',
-      refs: [
-        { id: 'ZQFVDfKpy-w', url: 'https://www.youtube.com/shorts/ZQFVDfKpy-w' },
-        { id: 'eLowECU7ZjM', url: 'https://www.youtube.com/shorts/eLowECU7ZjM' }
-      ],
-      guide: [
-        '팔로워에게 성형/시술 관련 질문을 사전에 받아 Q&A 형식으로 진행',
-        'ID만의 차별화된 후관리 시스템 (재방문 횟수, 사용 장비 등) 집중 소개',
-        '\'수술 후가 더 완벽한 병원\' 인식을 심어주는 것이 핵심'
-      ]
-    },
-    {
-      title: '코 상담 시 많이 들고 가는 연예인 사진',
-      summary: '연예인 코 유형 분석 → ID 전문 분야 각인',
-      concept: '\'자연스러운 코\' 등 인기 연예인 사진을 분석하고 ID의 전문 분야와 연결합니다. \'자연스러운 코 전문 = ID\'라는 공식을 각인시킵니다.',
-      refs: [
-        { id: 'WsltqbrT7EY', url: 'https://www.youtube.com/shorts/WsltqbrT7EY' },
-        { id: 'ZgfP06QZEfI', url: 'https://www.youtube.com/shorts/ZgfP06QZEfI' }
-      ],
-      guide: [
-        '상담 시 환자들이 많이 들고 오는 연예인 코 유형을 분류하고 분석',
-        '각 코 유형의 특징과 ID가 잘하는 분야 자연스럽게 연결',
-        '\'자연스러운 코 전문 병원 = ID\' 공식 각인, 팔로워 댓글 참여 유도'
-      ]
-    },
-    {
-      title: 'MBTI별 성형 상담',
-      summary: '성격 유형별 외모 고민 해결 상황극',
-      concept: '성격 유형별로 외모 고민을 해결하는 방식과 상담 차이를 상황극으로 표현합니다. 예: \'완벽주의 ISTJ가 선택한 ID 성형외과의 안전 시스템\'',
-      refs: [
-        { id: '_8fP6li8qPU', url: 'https://www.youtube.com/shorts/_8fP6li8qPU' },
-        { id: 'N1C0wSNf6yc', url: 'https://www.youtube.com/shorts/N1C0wSNf6yc' },
-        { id: 'K-7vs4q83UM', url: 'https://www.youtube.com/shorts/K-7vs4q83UM' }
-      ],
-      guide: [
-        '성격 유형별로 외모 고민 해결 방식을 상황극으로 표현',
-        '예: 완벽주의 ISTJ → ID의 안전 시스템 강조 / 즉흥적 ENFP → 빠른 상담 강조',
-        '다양한 MBTI 커버로 도달률 극대화, 공감을 통해 ID와 자연스럽게 연결'
-      ]
-    }
   ]
 };
 
@@ -880,16 +795,7 @@ function toggleAcc(head) {
   if (!isOpen) item.classList.add('open');
 }
 
-function switchTab(type, btn) {
-  document.querySelectorAll('.format-card').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  document.querySelectorAll('.content-section').forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById(type).classList.add('active');
-  document.querySelectorAll('.accordion-item').forEach(function(i) { i.classList.remove('open'); });
-}
-
 renderSection('procedure');
-renderSection('nonvisit');
 </script>
 </body>
 </html>
