@@ -1,684 +1,202 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ID x SIRIAI — 콘텐츠 가이드</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f5f5f3;
-      --ink: #0d0d0d;
-      --mid: #555555;
-      --dim: #909090;
-      --faint: rgba(13,13,13,0.08);
-      --rule: rgba(13,13,13,0.12);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ID × SIRIAI — 콘텐츠 가이드 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#F9F6F0; --ink:#1C1A16; --line:#E2DDD7; --line-2:#D8D3CC;
+    --muted:#8A8680; --muted-2:#6A6660; --faint-ink:#B0AAA2; --body:#4A4844;
+    --paper:#FFFFFF; --pad:80px;
+  }
+  html { -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  body {
+    background:var(--bg); color:var(--ink);
+    font-family:'Pretendard Variable', Pretendard, -apple-system, 'Malgun Gothic', sans-serif;
+    min-height:100vh; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .page { max-width:1280px; margin:0 auto; padding:0 var(--pad) 96px; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* NAV */
+  nav { display:flex; justify-content:space-between; align-items:center; padding:32px 0; border-bottom:1px solid var(--line); }
+  .nav-logo { font-size:12px; font-weight:900; letter-spacing:0.3em; text-transform:uppercase; color:var(--ink); }
+  .nav-label { font-size:9px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--faint-ink); }
 
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Noto Sans KR', sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+  /* HERO */
+  .hero { padding:60px 0 48px; }
+  .hero-eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .hero-eyebrow-line { display:inline-block; width:22px; height:1px; background:#C4BFB8; }
+  .hero-eyebrow-text { font-size:8px; font-weight:700; color:var(--faint-ink); letter-spacing:0.26em; text-transform:uppercase; }
+  h1 { font-size:clamp(44px, 8.4vw, 72px); font-weight:900; line-height:0.92; letter-spacing:-0.03em; color:var(--ink); margin-bottom:10px; }
+  .hero-sub { font-size:clamp(18px, 3.4vw, 22px); font-weight:300; color:var(--muted); letter-spacing:0.08em; margin-bottom:28px; }
+  .hero-desc { font-size:14px; font-weight:400; color:var(--muted-2); line-height:1.9; max-width:480px; text-wrap:pretty; }
+  .hero-desc strong { font-weight:700; color:var(--ink); }
 
-    /* ── HERO ── */
-    .hero {
-      max-width: 640px;
-      margin: 0 auto;
-      border-bottom: 1px solid var(--rule);
-      overflow: hidden;
-    }
+  /* META */
+  .meta-grid { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line); background:var(--line); gap:1px; margin-bottom:44px; }
+  .meta-cell { background:var(--bg); padding:18px 24px; }
+  .meta-label { font-size:7px; font-weight:700; color:var(--faint-ink); letter-spacing:0.24em; text-transform:uppercase; margin-bottom:7px; }
+  .meta-value { font-size:13px; font-weight:700; color:var(--ink); }
+  .meta-value.large { font-size:28px; letter-spacing:-0.04em; line-height:1; }
 
-    /* top meta bar */
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 28px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .hero-top-item {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: 0.38em;
-      color: var(--mid);
-      text-transform: uppercase;
-    }
+  /* TABS */
+  .tabs-label { font-size:7.5px; font-weight:700; color:var(--faint-ink); letter-spacing:0.28em; text-transform:uppercase; margin-bottom:12px; }
+  .tabs-row { display:flex; gap:8px; margin-bottom:14px; }
+  .tab-btn { display:flex; align-items:center; gap:10px; padding:14px 18px; border:1px solid var(--line); background:transparent; cursor:pointer; flex:1; transition:all 0.2s ease; font-family:inherit; color:var(--ink); }
+  .tab-btn:hover { background:#F2EFE9; border-color:#A8A4A0; }
+  .tab-btn.active { background:var(--ink); border-color:var(--ink); color:var(--bg); }
+  .tab-num { font-size:10px; font-weight:700; opacity:0.42; letter-spacing:0.08em; flex-shrink:0; }
+  .tab-title { font-size:14px; font-weight:700; flex:1; text-align:left; }
+  .tab-badge { padding:3px 9px; border-radius:20px; font-size:10px; font-weight:700; background:#EDE9E2; color:var(--muted); transition:all 0.2s ease; flex-shrink:0; }
+  .tab-btn.active .tab-badge { background:rgba(249,246,240,0.18); color:var(--bg); }
+  .tab-desc { font-size:12.5px; color:var(--muted); font-weight:400; line-height:1.75; }
 
-    /* main display area */
-    .hero-display-wrap {
-      position: relative;
-      padding: 0 28px;
-    }
+  /* ACCORDION */
+  .accordion { border-top:1px solid var(--line); margin-top:20px; }
+  .acc-item { border-bottom:1px solid var(--line); border-left:4px solid transparent; transition:border-color 0.2s ease, opacity 0.25s ease, background 0.2s ease; }
+  .acc-item.open { border-left-color:var(--ink); background:rgba(255,255,255,0.45); }
+  .acc-item.dimmed { opacity:0.45; }
+  .acc-header { display:flex; align-items:center; gap:20px; padding:18px 28px; cursor:pointer; user-select:none; }
+  .acc-num { font-size:34px; font-weight:900; letter-spacing:-0.04em; line-height:1; flex-shrink:0; width:62px; color:#D8D3CC; transition:all 0.22s ease; display:inline-block; }
+  .acc-item.open .acc-num, .acc-header:hover .acc-num { color:var(--ink); }
+  .acc-item.open .acc-num { font-size:44px; }
+  .acc-titles { flex:1; min-width:0; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .acc-title { font-size:17px; font-weight:700; letter-spacing:-0.01em; color:#3A3832; transition:color 0.2s ease; }
+  .acc-item.open .acc-title, .acc-header:hover .acc-title { color:var(--ink); }
+  .acc-subtitle { font-size:12px; font-weight:400; color:var(--faint-ink); transition:color 0.2s ease; }
+  .acc-item.open .acc-subtitle { color:var(--muted); }
+  .acc-btn { width:30px; height:30px; border-radius:50%; border:1px solid var(--line-2); background:transparent; display:inline-flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; color:var(--faint-ink); transition:all 0.25s ease; }
+  .acc-item.open .acc-btn { background:var(--ink); border-color:var(--ink); color:var(--bg); transform:rotate(180deg); }
 
-    /* huge bleeding title */
-    .hero-display {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(44px, 12vw, 72px);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 0.94;
-      color: var(--ink);
-      padding-top: 20px;
-      padding-bottom: 4px;
-      margin-right: -20px;
-    }
-    .hero-display .line-x {
-      display: block;
-    }
+  /* PANEL (animated via grid-rows) */
+  .acc-panel { display:grid; grid-template-rows:0fr; transition:grid-template-rows 0.4s cubic-bezier(0.22,1,0.36,1); }
+  .acc-item.open .acc-panel { grid-template-rows:1fr; }
+  .acc-panel-clip { overflow:hidden; min-height:0; }
+  .acc-panel-inner { padding:0 28px 30px; }
+  .detail-grid { display:grid; grid-template-columns:1fr 1.1fr 220px; background:var(--line); gap:1px; border:1px solid var(--line); }
+  .detail-col { background:var(--paper); padding:24px 26px; }
+  .detail-label-row { display:flex; align-items:center; gap:7px; margin-bottom:14px; }
+  .detail-dash { font-size:9px; color:var(--faint-ink); font-weight:500; }
+  .detail-label { font-size:7.5px; font-weight:700; color:var(--faint-ink); letter-spacing:0.22em; text-transform:uppercase; }
+  .concept-text { font-size:13px; color:var(--body); line-height:1.9; font-weight:400; text-wrap:pretty; }
+  .guide-step { display:flex; gap:12px; margin-bottom:14px; align-items:flex-start; }
+  .guide-step:last-child { margin-bottom:0; }
+  .guide-n { font-size:10px; font-weight:800; color:var(--ink); letter-spacing:0.06em; flex-shrink:0; width:20px; padding-top:2px; }
+  .guide-text { font-size:12.5px; color:var(--body); line-height:1.8; font-weight:400; text-wrap:pretty; }
 
-    /* right-side vertical overflow label */
-    .hero-overflow {
-      position: absolute;
-      right: -4px;
-      bottom: 0;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(40px, 11vw, 60px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 0.9;
-      color: var(--faint);
-      text-align: right;
-      pointer-events: none;
-      white-space: nowrap;
-    }
+  /* REFERENCE — real thumbnails */
+  .ref-stack { display:flex; flex-direction:column; gap:8px; }
+  .ref-thumb { position:relative; display:block; width:100%; aspect-ratio:16/9; border:1px solid var(--line); overflow:hidden; text-decoration:none; background:linear-gradient(160deg,#EDE9E2 0%,#E2DDD7 100%); transition:border-color 0.18s, transform 0.18s; }
+  .ref-thumb:hover { border-color:var(--line-2); transform:translateY(-2px); }
+  .ref-thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(15%); transition:filter 0.2s, transform 0.3s; }
+  .ref-thumb:hover img { filter:grayscale(0%); transform:scale(1.04); }
+  .ref-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,0.85); display:flex; align-items:center; justify-content:center; font-size:9px; color:var(--ink); opacity:0; transition:opacity 0.18s; }
+  .ref-thumb:hover .ref-play { opacity:1; }
+  .ref-label-tag { position:absolute; bottom:6px; left:8px; font-size:8px; font-weight:700; color:var(--ink); letter-spacing:0.1em; background:rgba(255,255,255,0.85); padding:2px 6px; z-index:2; }
+  .ref-empty { font-size:11px; font-style:italic; color:var(--faint-ink); border:1px dashed var(--line-2); padding:18px; text-align:center; }
 
-    /* info row under title */
-    .hero-info-row {
-      display: flex;
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      margin-top: 20px;
-    }
-    .hero-info-cell {
-      flex: 1;
-      padding: 14px 0;
-    }
-    .hero-info-cell + .hero-info-cell {
-      border-left: 1px solid var(--rule);
-      padding-left: 16px;
-    }
-    .hero-info-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: 0.36em;
-      color: var(--dim);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .hero-info-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-    }
+  /* FOOTER */
+  footer { margin-top:64px; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+  .footer-copy { font-size:9px; color:var(--faint-ink); letter-spacing:0.06em; }
+  .footer-link { font-size:9px; font-weight:700; color:var(--ink); text-decoration:none; letter-spacing:0.1em; border-bottom:1px solid var(--ink); padding-bottom:1px; }
+  .footer-link:hover { opacity:0.6; }
 
-    /* description block */
-    .hero-desc-wrap {
-      padding: 28px 0 36px;
-      border-top: 1px solid var(--rule);
-      margin-top: 20px;
-    }
-    .hero-desc {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.85;
-      letter-spacing: -0.01em;
-    }
+  /* REVEAL */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  .reveal { opacity:0; animation:fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .reveal.d1 { animation-delay:0.06s; } .reveal.d2 { animation-delay:0.14s; }
+  .reveal.d3 { animation-delay:0.22s; } .reveal.d4 { animation-delay:0.3s; }
 
-    /* ── FORMAT SELECT ── */
-    .format-select {
-      max-width: 640px;
-      margin: 0 auto;
-      border-bottom: 1px solid var(--rule);
-    }
-    .format-select-header {
-      padding: 20px 28px 14px;
-      border-top: 1px solid var(--rule);
-    }
-    .format-select-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: 0.44em;
-      color: var(--dim);
-      text-transform: uppercase;
-    }
-    .format-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--rule);
-    }
-    .format-card {
-      padding: 24px 28px 28px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      transition: background 0.2s;
-      position: relative;
-    }
-    .format-card + .format-card { border-left: 1px solid var(--rule); }
-    .format-card.active { background: var(--ink); }
-
-    .format-card-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      color: var(--dim);
-      margin-bottom: 16px;
-      transition: color 0.2s;
-    }
-    .format-card.active .format-card-num { color: rgba(255,255,255,0.35); }
-
-    .format-card-title {
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1.5;
-      margin-bottom: 10px;
-      transition: color 0.2s;
-    }
-    .format-card.active .format-card-title { color: #fff; }
-
-    .format-card-desc {
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 11px;
-      font-weight: 300;
-      color: var(--mid);
-      line-height: 1.7;
-      margin-bottom: 20px;
-      transition: color 0.2s;
-    }
-    .format-card.active .format-card-desc { color: rgba(255,255,255,0.5); }
-
-    .format-card-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--dim);
-      transition: color 0.2s;
-    }
-    .format-card.active .format-card-indicator { color: rgba(255,255,255,0.55); }
-    .format-card-indicator::before {
-      content: '';
-      width: 16px;
-      height: 1px;
-      background: currentColor;
-      display: block;
-    }
-    .format-card:not(.active) .format-card-indicator::after {
-      content: '선택';
-    }
-    .format-card.active .format-card-indicator::after {
-      content: '선택됨';
-    }
-
-    /* ── DIVIDER ── */
-    .section-divider {
-      max-width: 640px;
-      margin: 0 auto;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    /* ── 제목 카드 ── */
-    .type-card {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 0 20px 24px;
-    }
-    .type-card-inner {
-      background: var(--ink);
-      border-radius: 10px;
-      padding: 28px 24px;
-    }
-    .type-card-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.36em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 12px;
-    }
-    .type-card-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(24px, 7vw, 36px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #fff;
-      line-height: 1.1;
-    }
-    .type-card-desc {
-      margin-top: 14px;
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.7;
-    }
-
-    /* ── ACCORDION ── */
-    .content-section { display: none; }
-    .content-section.active { display: block; }
-
-    .accordion-item { border-bottom: 1px solid var(--rule); }
-
-    .accordion-head {
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      cursor: pointer;
-      max-width: 640px;
-      margin: 0 auto;
-      transition: background 0.12s;
-      min-height: 64px;
-    }
-    .accordion-head:active { background: rgba(13,13,13,0.04); }
-
-    .acc-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--faint);
-      letter-spacing: -0.03em;
-      min-width: 48px;
-      line-height: 1;
-      padding: 18px 0;
-    }
-
-    .acc-info { flex: 1; min-width: 0; padding: 18px 0; }
-
-    .acc-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 4px;
-      letter-spacing: -0.01em;
-    }
-
-    .acc-summary {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--mid);
-    }
-
-    .acc-arrow {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      border: 1px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.25s;
-    }
-    .accordion-item.open .acc-arrow { transform: rotate(180deg); }
-    .acc-arrow svg {
-      width: 10px;
-      height: 10px;
-      stroke: var(--mid);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* ── BODY ── */
-    .accordion-body {
-      display: none;
-      border-top: 1px solid var(--rule);
-      background: rgba(13,13,13,0.02);
-    }
-    .accordion-item.open .accordion-body { display: block; }
-
-    .body-inner {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 0 20px 28px;
-    }
-
-    /* ── DETAIL BLOCKS ── */
-    .detail-block { padding-top: 22px; }
-    .detail-block + .detail-block {
-      border-top: 1px solid var(--rule);
-      padding-top: 22px;
-    }
-
-    .detail-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      letter-spacing: 0.44em;
-      color: var(--dim);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .concept-text {
-      font-size: 13px;
-      font-weight: 400;
-      color: #3a3a3a;
-      line-height: 1.9;
-    }
-
-    /* ── REFERENCE ── */
-    .ref-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
-    }
-
-    .ref-card {
-      position: relative;
-      background: var(--faint);
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      overflow: hidden;
-      display: block;
-      text-decoration: none;
-      transition: border-color 0.18s;
-    }
-    .ref-card:hover { border-color: rgba(13,13,13,0.4); }
-
-    .ref-card img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(20%);
-      opacity: 0.9;
-    }
-
-    .ref-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(13,13,13,0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.18s;
-    }
-    .ref-card:hover .ref-overlay { opacity: 1; }
-
-    .ref-play {
-      width: 30px;
-      height: 30px;
-      border: 1px solid rgba(245,245,243,0.8);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .ref-play svg { width: 8px; height: 8px; fill: var(--bg); margin-left: 2px; }
-
-    .ref-num {
-      position: absolute;
-      bottom: 6px;
-      right: 8px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      font-weight: 500;
-      color: rgba(245,245,243,0.75);
-      letter-spacing: 0.14em;
-    }
-
-    .ref-empty {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 11px;
-      color: var(--dim);
-      font-style: italic;
-    }
-
-    /* ── GUIDE ── */
-    .guide-list { display: flex; flex-direction: column; }
-
-    .guide-item {
-      display: flex;
-      gap: 12px;
-      padding: 11px 0;
-      border-bottom: 1px solid var(--rule);
-      font-size: 13px;
-      font-weight: 400;
-      color: #3a3a3a;
-      line-height: 1.8;
-    }
-    .guide-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-    .guide-dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--dim);
-      margin-top: 10px;
-      flex-shrink: 0;
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      max-width: 640px;
-      margin: 0 auto;
-      border-top: 1px solid var(--rule);
-      overflow: hidden;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 28px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .footer-top-item {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: 0.36em;
-      color: var(--dim);
-      text-transform: uppercase;
-    }
-    .footer-top-link {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      color: var(--ink);
-      transition: opacity 0.2s;
-    }
-    .footer-top-link:hover {
-      opacity: 0.6;
-    }
-
-    .footer-main {
-      padding: 16px 28px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      overflow: hidden;
-    }
-
-    .footer-brand {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(36px, 10vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 0.95;
-      color: var(--ink);
-      margin-right: -8px; /* slight bleed */
-    }
-    .footer-brand .x { color: var(--dim); font-weight: 300; margin: 0 3px; }
-
-    .footer-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      padding-bottom: 4px;
-    }
-    .footer-note {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      font-weight: 500;
-      color: var(--dim);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-    .footer-arrow {
-      width: 28px;
-      height: 28px;
-      border: 1px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .footer-arrow svg {
-      width: 11px;
-      height: 11px;
-      stroke: var(--mid);
-      fill: none;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .footer-portfolio {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 28px;
-      border-top: 1px solid var(--rule);
-    }
-    .footer-portfolio-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: 0.38em;
-      color: var(--dim);
-      text-transform: uppercase;
-    }
-    .footer-portfolio-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 1px;
-      transition: opacity 0.18s;
-    }
-    .footer-portfolio-link:hover { opacity: 0.5; }
-    .footer-portfolio-link svg { width: 11px; height: 11px; }
-
-    @media (max-width: 480px) {
-      .hero-top { padding: 14px 20px; }
-      .hero-top-item:nth-child(2) { display: none; }
-      .hero-display-wrap { padding: 0 20px; }
-      .hero-info-row { }
-      .hero-desc-wrap { padding: 20px 20px 24px; }
-      .tab-wrap { padding: 24px 20px 0; }
-      .accordion-head { padding: 0 20px; }
-      .acc-num { font-size: 22px; min-width: 46px; }
-      .acc-summary { display: none; }
-      .body-inner { padding: 0 20px 28px; }
-      .footer-top { padding: 12px 20px; }
-      .footer-main { padding: 14px 20px 24px; }
-    }
-  </style>
+  /* RESPONSIVE */
+  @media (max-width:860px) {
+    :root { --pad:40px; }
+    .detail-grid { grid-template-columns:1fr; }
+    .ref-stack { flex-direction:row; flex-wrap:wrap; }
+    .ref-thumb { flex:1 1 180px; }
+  }
+  @media (max-width:560px) {
+    :root { --pad:20px; }
+    nav { padding:22px 0; }
+    .hero { padding:40px 0 30px; }
+    .meta-grid { grid-template-columns:repeat(2,1fr); }
+    .tabs-row { flex-direction:column; }
+    .acc-header { gap:14px; padding:16px 14px; }
+    .acc-num { width:46px; font-size:28px; }
+    .acc-item.open .acc-num { font-size:34px; }
+    .acc-subtitle { flex-basis:100%; }
+    .acc-panel-inner { padding:0 14px 24px; }
+    .detail-col { padding:20px; }
+    .ref-stack { flex-direction:column; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+    .reveal { opacity:1 !important; transform:none !important; }
+  }
+</style>
 </head>
 <body>
+<div class="page">
 
-<!-- ── HERO ── -->
-<div class="hero">
+  <nav>
+    <span class="nav-logo">SIRIAI</span>
+    <span class="nav-label">Content Guide 2026</span>
+  </nav>
 
-  <div class="hero-top">
-    <span class="hero-top-item">ID HOSPITAL</span>
-    <span class="hero-top-item">Content Guide</span>
-    <span class="hero-top-item">SIRIAI — 2026</span>
-  </div>
-
-  <div class="hero-display-wrap">
-    <h1 class="hero-display">
-      ID HOSPITAL<span class="line-x">×</span>SIRIAI.
-    </h1>
-    <div class="hero-overflow">Guide.</div>
-  </div>
-
-  <div class="hero-desc-wrap" style="padding-left:20px; padding-right:20px;">
-    <p class="hero-desc">
-      ID 성형외과 캠페인 참여 인플루언서를 위한<br>공식 콘텐츠 가이드입니다.<br>
-      두 가지 포맷 중 본인에게 맞는 방식을 선택해 진행해 주세요.
-    </p>
-  </div>
-
-</div>
-
-<!-- ── FORMAT SELECT ── -->
-<div class="format-select">
-  <div class="format-select-header">
-    <span class="format-select-label">포맷 선택 — 하나를 선택해 진행해 주세요</span>
-  </div>
-  <div class="format-cards">
-    <button class="format-card active" onclick="switchTab('procedure', this)">
-      <p class="format-card-num">01</p>
-      <p class="format-card-title">시술·성형<br>진행형</p>
-      <p class="format-card-desc">시술 또는 성형을 직접<br>진행하며 제작하는 포맷</p>
-      <span class="format-card-indicator"></span>
-    </button>
-    <button class="format-card" onclick="switchTab('nonvisit', this)">
-      <p class="format-card-num">02</p>
-      <p class="format-card-title">비방문<br>정보·브랜딩형</p>
-      <p class="format-card-desc">병원 방문 없이 정보 전달<br>또는 브랜딩 중심 포맷</p>
-      <span class="format-card-indicator"></span>
-    </button>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<div id="procedure" class="content-section active"></div>
-<div id="nonvisit" class="content-section"></div>
-
-<!-- ── FOOTER ── -->
-<div class="footer">
-  <div class="footer-top">
-    <span class="footer-top-item">SIRIAI Portfolio</span>
-    <a class="footer-top-link" href="https://featpaper.com/v/7jqtPGf2" target="_blank" rel="noopener">featpaper.com/v/7jqtPGf2 ↗</a>
-  </div>
-  <div class="footer-main">
-    <p class="footer-brand">ID HOSPITAL<span class="x">×</span>SIRIAI.</p>
-    <div class="footer-right">
-      <span class="footer-note">2026 Campaign</span>
-      <div class="footer-arrow">
-        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </div>
+  <section class="hero">
+    <div class="hero-eyebrow reveal">
+      <span class="hero-eyebrow-line"></span>
+      <span class="hero-eyebrow-text">ID HOSPITAL Content Guide</span>
     </div>
+    <h1 class="reveal d1">ID HOSPITAL</h1>
+    <div class="hero-sub reveal d2">× SIRIAI.</div>
+    <p class="hero-desc reveal d3">
+      ID 성형외과 캠페인에 참여하는 인플루언서를 위한 <strong>공식 콘텐츠 가이드</strong>입니다.
+      포맷을 선택하고, 제안된 컨셉을 자유롭게 활용해 제작해 주세요.
+    </p>
+  </section>
+
+  <div class="meta-grid reveal d3">
+    <div class="meta-cell"><div class="meta-label">Client</div><div class="meta-value">ID HOSPITAL</div></div>
+    <div class="meta-cell"><div class="meta-label">Campaign</div><div class="meta-value large">2026</div></div>
+    <div class="meta-cell"><div class="meta-label">Formats</div><div class="meta-value large">02</div></div>
+    <div class="meta-cell"><div class="meta-label">Concepts</div><div class="meta-value large" id="concepts-count">5</div></div>
   </div>
+
+  <div class="tabs-label">콘텐츠 포맷 선택 · Select Format</div>
+  <div class="tabs-row">
+    <button class="tab-btn active" data-type="procedure" onclick="switchTab('procedure', this)">
+      <span class="tab-num">01</span>
+      <span class="tab-title">시술 · 성형 진행형</span>
+      <span class="tab-badge" id="badge-procedure">5</span>
+    </button>
+    <button class="tab-btn" data-type="nonvisit" onclick="switchTab('nonvisit', this)">
+      <span class="tab-num">02</span>
+      <span class="tab-title">비방문 정보 · 브랜딩형</span>
+      <span class="tab-badge" id="badge-nonvisit">8</span>
+    </button>
+  </div>
+  <p class="tab-desc" id="tab-desc">시술 또는 성형을 직접 진행하며 제작하는 콘텐츠 포맷입니다.</p>
+
+  <div class="accordion" id="accordion"></div>
+
+  <footer>
+    <span class="footer-copy">ID HOSPITAL × SIRIAI. 2026 Campaign</span>
+    <a href="https://featpaper.com/v/7jqtPGf2" target="_blank" rel="noopener" class="footer-link">SIRIAI Portfolio ↗</a>
+  </footer>
+
 </div>
 
 <script>
+const CAPTION = {
+  procedure: '시술 또는 성형을 직접 진행하며 제작하는 콘텐츠 포맷입니다.',
+  nonvisit: '병원 방문 없이 정보 전달 또는 브랜딩 중심으로 제작하는 포맷입니다.'
+};
+
 const DATA = {
   procedure: [
     {
@@ -862,61 +380,72 @@ const DATA = {
   ]
 };
 
-function pad(n) { return n < 10 ? '0' + n : '' + n; }
+function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 function thumb(id) { return 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'; }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-function renderSection(type) {
-  var section = document.getElementById(type);
-  section.innerHTML = DATA[type].map(function(item, idx) {
-    var refsHtml = item.refs.length > 0
-      ? '<div class="ref-grid">' + item.refs.map(function(r, i) {
-          return '<a class="ref-card" href="' + r.url + '" target="_blank" rel="noopener">'
-            + '<img src="' + thumb(r.id) + '" alt="ref ' + (i+1) + '" loading="lazy">'
-            + '<div class="ref-overlay"><div class="ref-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>'
-            + '<span class="ref-num">' + pad(i+1) + '</span>'
-            + '</a>';
-        }).join('') + '</div>'
-      : '<p class="ref-empty">레퍼런스 영상 준비 중</p>';
+function refsHtml(refs) {
+  if (!refs || refs.length === 0) return '<p class="ref-empty">레퍼런스 영상 준비 중</p>';
+  return '<div class="ref-stack">' + refs.map(function(r, i) {
+    return '<a class="ref-thumb" href="' + r.url + '" target="_blank" rel="noopener">'
+      + '<img src="' + thumb(r.id) + '" loading="lazy" alt="reference ' + (i+1) + '">'
+      + '<span class="ref-play">▶</span>'
+      + '<span class="ref-label-tag">REF ' + pad2(i+1) + '</span>'
+      + '</a>';
+  }).join('') + '</div>';
+}
 
-    var guideHtml = '<div class="guide-list">'
-      + item.guide.map(function(g) {
-          return '<div class="guide-item"><span class="guide-dot"></span><span>' + g + '</span></div>';
-        }).join('') + '</div>';
-
-    return '<div class="accordion-item">'
-      + '<div class="accordion-head" onclick="toggleAcc(this)">'
-      + '<span class="acc-num">' + pad(idx+1) + '</span>'
-      + '<div class="acc-info">'
-      + '<p class="acc-title">' + item.title + '</p>'
-      + '<p class="acc-summary">' + item.summary + '</p>'
-      + '</div>'
-      + '<div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>'
-      + '</div>'
-      + '<div class="accordion-body"><div class="body-inner">'
-      + '<div class="detail-block"><p class="detail-label">Concept</p><p class="concept-text">' + item.concept + '</p></div>'
-      + '<div class="detail-block"><p class="detail-label">Reference</p>' + refsHtml + '</div>'
-      + '<div class="detail-block"><p class="detail-label">Guide</p>' + guideHtml + '</div>'
-      + '</div></div></div>';
+function guideHtml(guide) {
+  return guide.map(function(g, i) {
+    return '<div class="guide-step"><span class="guide-n">' + pad2(i+1) + '</span><p class="guide-text">' + esc(g) + '</p></div>';
   }).join('');
 }
 
-function toggleAcc(head) {
-  var item = head.closest('.accordion-item');
-  var isOpen = item.classList.contains('open');
-  item.closest('.content-section').querySelectorAll('.accordion-item').forEach(function(i) { i.classList.remove('open'); });
-  if (!isOpen) item.classList.add('open');
+function itemHtml(item, idx) {
+  return '<div class="acc-item" data-idx="' + idx + '">'
+    + '<div class="acc-header" onclick="toggleItem(' + idx + ')">'
+    + '<span class="acc-num">' + pad2(idx+1) + '</span>'
+    + '<div class="acc-titles"><span class="acc-title">' + esc(item.title) + '</span><span class="acc-subtitle">' + esc(item.summary) + '</span></div>'
+    + '<span class="acc-btn">↓</span>'
+    + '</div>'
+    + '<div class="acc-panel"><div class="acc-panel-clip"><div class="acc-panel-inner"><div class="detail-grid">'
+    + '<div class="detail-col"><div class="detail-label-row"><span class="detail-dash">—</span><span class="detail-label">Concept</span></div><p class="concept-text">' + esc(item.concept) + '</p></div>'
+    + '<div class="detail-col"><div class="detail-label-row"><span class="detail-dash">—</span><span class="detail-label">Guide</span></div>' + guideHtml(item.guide) + '</div>'
+    + '<div class="detail-col"><div class="detail-label-row"><span class="detail-dash">—</span><span class="detail-label">Reference</span></div>' + refsHtml(item.refs) + '</div>'
+    + '</div></div></div></div>'
+    + '</div>';
+}
+
+var currentTab = 'procedure';
+
+function renderTab(type) {
+  currentTab = type;
+  document.getElementById('accordion').innerHTML = DATA[type].map(itemHtml).join('');
+  document.getElementById('concepts-count').textContent = pad2(DATA[type].length);
 }
 
 function switchTab(type, btn) {
-  document.querySelectorAll('.format-card').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  document.querySelectorAll('.content-section').forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById(type).classList.add('active');
-  document.querySelectorAll('.accordion-item').forEach(function(i) { i.classList.remove('open'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.toggle('active', b === btn); });
+  document.getElementById('tab-desc').textContent = CAPTION[type];
+  renderTab(type);
 }
 
-renderSection('procedure');
-renderSection('nonvisit');
+function toggleItem(idx) {
+  var items = Array.prototype.slice.call(document.getElementById('accordion').children);
+  var target = items[idx];
+  var willOpen = !target.classList.contains('open');
+  items.forEach(function(el) { el.classList.remove('open'); el.classList.remove('dimmed'); });
+  if (willOpen) {
+    target.classList.add('open');
+    items.forEach(function(el) { if (el !== target) el.classList.add('dimmed'); });
+  }
+}
+
+// init
+document.getElementById('badge-procedure').textContent = DATA.procedure.length;
+document.getElementById('badge-nonvisit').textContent = DATA.nonvisit.length;
+renderTab('procedure');
+document.getElementById('tab-desc').textContent = CAPTION.procedure;
 </script>
 </body>
 </html>
