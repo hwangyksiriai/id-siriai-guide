@@ -3,254 +3,504 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>시리아이 · 틈결 운영 — INTERNAL</title>
+  <title>ID × SIRIAI — 가이드 운영 허브 · Internal</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f5f5f3;
-      --ink: #0d0d0d;
-      --mid: rgba(13,13,13,0.45);
-      --dim: rgba(13,13,13,0.22);
-      --faint: rgba(13,13,13,0.10);
-      --rule: rgba(13,13,13,0.14);
-      --green: #2d7a4f;
-      --green-dot: #3a9e68;
-      --amber: #b45309;
-      --amber-dot: #d97706;
-      --blue: #1e4f8c;
-      --blue-dot: #2563eb;
+      --bg:    #f5f5f3;
+      --ink:   #0d0d0d;
+      --mid:   #555555;
+      --dim:   #909090;
+      --faint: rgba(13,13,13,0.08);
+      --rule:  rgba(13,13,13,0.12);
+      --hover: rgba(13,13,13,0.03);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
 
     body {
       background: var(--bg);
       color: var(--ink);
       font-family: 'Noto Sans KR', sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-left: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
       min-height: 100vh;
     }
 
-    .wrap {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 0 0 80px;
-    }
-
-    /* ── HEADER ── */
-    .header {
-      padding: 44px 28px 28px;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .header-top {
+    /* ── TOP BAR ── */
+    .topbar {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
+      padding: 18px 48px;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fade 0.6s ease 0.02s forwards;
     }
-
-    .header-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-
-    .badge-internal {
+    .topbar-item {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-weight: 500;
+      letter-spacing: 0.38em;
+      color: var(--mid);
       text-transform: uppercase;
-      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .topbar-x { color: var(--ink); font-weight: 700; }
+    .topbar-tag {
+      font-size: 8.5px;
+      letter-spacing: 0.3em;
+      color: var(--dim);
       border: 1px solid var(--rule);
-      border-radius: 3px;
-      padding: 2px 7px;
+      padding: 4px 9px;
     }
 
-    .header-sub {
-      font-size: 12px;
-      color: var(--mid);
+    /* ── HERO ── */
+    .hero-display-wrap {
+      position: relative;
+      padding: 0 48px;
+      overflow: hidden;
+    }
+    .hero-display {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(58px, 7vw, 96px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 0.92;
+      color: var(--ink);
+      padding-top: 40px;
+      padding-bottom: 6px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-display .line { display: block; opacity: 0; animation: rise 0.85s cubic-bezier(0.16,0.8,0.24,1) forwards; }
+    .hero-display .line:nth-child(1) { animation-delay: 0.08s; }
+    .hero-display .line:nth-child(2) { animation-delay: 0.16s; }
+    .hero-display .x { color: var(--dim); font-weight: 400; }
+
+    .hero-overflow {
+      position: absolute;
+      right: 40px;
+      bottom: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.86;
+      color: var(--faint);
+      text-align: right;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    /* ── INFO ROW ── */
+    .info-row {
+      display: flex;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin-top: 28px;
+      opacity: 0;
+      animation: fade 0.7s ease 0.34s forwards;
+    }
+    .info-cell {
+      flex: 1;
+      padding: 18px 0 18px 24px;
+    }
+    .info-cell:first-child { padding-left: 48px; }
+    .info-cell + .info-cell { border-left: 1px solid var(--rule); }
+    .info-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.36em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .info-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
       letter-spacing: 0.01em;
-    }
-
-    /* ── SECTION ── */
-    .section {
-      padding: 32px 28px 0;
-    }
-
-    .section-label {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 14px;
     }
-
-    .dot {
-      width: 8px;
-      height: 8px;
+    .live-dot {
+      position: relative;
+      width: 8px; height: 8px;
       border-radius: 50%;
+      background: var(--ink);
       flex-shrink: 0;
     }
-    .dot-green  { background: var(--green-dot); }
-    .dot-amber  { background: var(--amber-dot); }
-    .dot-blue   { background: var(--blue-dot); }
-
-    .section-label-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mid);
+    .live-dot::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(13,13,13,0.35);
+      animation: ping 2.4s cubic-bezier(0,0,0.2,1) infinite;
     }
 
-    /* ── CARD ── */
-    .card {
+    /* ── SECTION HEADER ── */
+    .section-head {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 16px 18px;
-      margin-bottom: 10px;
-      text-decoration: none;
-      color: inherit;
-      transition: box-shadow 0.18s, border-color 0.18s;
-      cursor: pointer;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 30px 48px 18px;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fade 0.7s ease 0.42s forwards;
     }
-
-    .card:hover {
-      border-color: rgba(13,13,13,0.28);
-      box-shadow: 0 2px 12px rgba(13,13,13,0.07);
-    }
-
-    .card-body {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .card-title {
-      font-size: 14px;
+    .section-head .ko {
+      font-size: 16px;
       font-weight: 500;
       color: var(--ink);
-      margin-bottom: 3px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      letter-spacing: 0.01em;
     }
-
-    .card-sub {
-      font-size: 11px;
-      color: var(--mid);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .card-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .tag {
+    .section-head .en {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.04em;
-      border-radius: 4px;
-      padding: 3px 9px;
-      white-space: nowrap;
-    }
-    .tag-green {
-      background: rgba(45,122,79,0.08);
-      color: var(--green);
-    }
-    .tag-amber {
-      background: rgba(180,83,9,0.08);
-      color: var(--amber);
-    }
-    .tag-blue {
-      background: rgba(30,79,140,0.08);
-      color: var(--blue);
-    }
-
-    .arrow {
-      font-size: 14px;
-      color: var(--dim);
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      padding: 48px 28px 0;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 9px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--dim);
+    }
+
+    /* ── GUIDE ROWS ── */
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 48px;
+      min-height: 104px;
+      text-decoration: none;
+      color: inherit;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      transition: background 0.18s ease;
+      opacity: 0;
+      animation: fade 0.6s ease forwards;
+    }
+    .row:nth-of-type(1) { animation-delay: 0.50s; }
+    .row:nth-of-type(2) { animation-delay: 0.58s; }
+    .row:nth-of-type(3) { animation-delay: 0.66s; }
+    .row::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--ink);
+      transform: scaleY(0);
+      transform-origin: center;
+      transition: transform 0.26s cubic-bezier(0.16,0.8,0.24,1);
+    }
+    .row:hover { background: var(--hover); }
+    .row:hover::before { transform: scaleY(1); }
+    .row:focus-visible { outline: 2px solid var(--ink); outline-offset: -3px; }
+
+    .row-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--faint);
+      letter-spacing: -0.03em;
+      min-width: 84px;
+      line-height: 1;
+      transition: color 0.22s ease;
+    }
+    .row:hover .row-num { color: var(--ink); }
+
+    .row-body { flex: 1; min-width: 0; padding-right: 20px; }
+    .row-title {
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      margin-bottom: 4px;
+    }
+    .row-sub {
+      font-size: 13.5px;
+      color: var(--mid);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .row-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .status .live-dot { width: 6px; height: 6px; }
+
+    .copy {
+      display: inline-grid;
+      place-items: center;
+      width: 36px; height: 36px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--dim);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      flex-shrink: 0;
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    .row:hover .copy, .row:focus-within .copy { opacity: 1; transform: scale(1); }
+    .copy:hover { color: var(--ink); border-color: var(--ink); }
+    .copy:active { transform: scale(0.9); }
+    .copy svg { width: 15px; height: 15px; }
+
+    .row-arrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      color: var(--dim);
+      width: 24px;
+      text-align: center;
+      transition: transform 0.26s cubic-bezier(0.16,0.8,0.24,1), color 0.22s;
+    }
+    .row:hover .row-arrow { transform: translateX(6px); color: var(--ink); }
+
+    /* ── FOOTER ── */
+    .foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px 48px 30px;
+      opacity: 0;
+      animation: fade 0.7s ease 0.78s forwards;
+    }
+    .foot-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+    .foot-meta {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translate(-50%, 16px);
+      background: var(--ink);
+      color: var(--bg);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 12px 20px;
+      box-shadow: 0 12px 34px -10px rgba(13,13,13,0.55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s, transform 0.22s cubic-bezier(0.16,0.8,0.24,1);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes ping {
+      0%   { box-shadow: 0 0 0 0 rgba(13,13,13,0.3); }
+      70%  { box-shadow: 0 0 0 8px rgba(13,13,13,0); }
+      100% { box-shadow: 0 0 0 0 rgba(13,13,13,0); }
+    }
+
+    @media (max-width: 720px) {
+      .shell { border-left: none; border-right: none; }
+      .topbar { padding: 16px 22px; }
+      .topbar-item { font-size: 8px; letter-spacing: 0.26em; gap: 7px; }
+      .hero-display-wrap { padding: 0 22px; }
+      .hero-display { padding-top: 32px; }
+      .hero-overflow { display: none; }
+      .info-cell { padding: 14px 0 14px 14px; }
+      .info-cell:first-child { padding-left: 22px; }
+      .info-value { font-size: 13px; }
+      .section-head { padding: 24px 22px 16px; }
+      .row { padding: 0 22px; min-height: 90px; }
+      .row-num { font-size: 30px; min-width: 56px; }
+      .row-title { font-size: 16px; }
+      .row-sub { font-size: 12.5px; }
+      .status { display: none; }
+      .copy { opacity: 1; transform: scale(1); }
+      .foot { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .topbar, .info-row, .section-head, .row, .foot, .hero-display .line { opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
 <body>
-<div class="wrap">
+<div class="shell">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-top">
-      <span class="header-title">시리아이 · ID 운영</span>
-      <span class="badge-internal">Internal</span>
-    </div>
-    <div class="header-sub">가이드 링크 관리 · ID Hospital</div>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="topbar-item">ID HOSPITAL <span class="topbar-x">✕</span> SIRIAI</span>
+    <span class="topbar-tag">Internal</span>
   </div>
 
-  <!-- SECTION 1: 콘텐츠 가이드 -->
-  <div class="section">
-    <div class="section-label">
-      <span class="dot dot-green"></span>
-      <span class="section-label-text">콘텐츠 가이드</span>
-    </div>
-
-    <a class="card" href="https://id-siriai-guide.vercel.app/guide-1.html">
-      <div class="card-body">
-        <div class="card-title">ID 제공용</div>
-        <div class="card-sub">ID × SIRIAI — 가이드라인</div>
-      </div>
-      <div class="card-right">
-        <span class="tag tag-green">가이드 1</span>
-        <span class="arrow">→</span>
-      </div>
-    </a>
-
-    <a class="card" href="https://id-siriai-guide.vercel.app/guide-2.html">
-      <div class="card-body">
-        <div class="card-title">시술 · 수술 진행형</div>
-        <div class="card-sub">ID × SIRIAI — 가이드라인</div>
-      </div>
-      <div class="card-right">
-        <span class="tag tag-green">가이드 2</span>
-        <span class="arrow">→</span>
-      </div>
-    </a>
-
-    <a class="card" href="https://id-siriai-guide.vercel.app/guide-3.html">
-      <div class="card-body">
-        <div class="card-title">비방문 정보 · 브랜딩형</div>
-        <div class="card-sub">ID × SIRIAI — 가이드라인</div>
-      </div>
-      <div class="card-right">
-        <span class="tag tag-green">가이드 3</span>
-        <span class="arrow">→</span>
-      </div>
-    </a>
+  <!-- HERO -->
+  <div class="hero-display-wrap">
+    <h1 class="hero-display">
+      <span class="line">CREATOR</span>
+      <span class="line">GUIDES<span class="x">.</span></span>
+    </h1>
+    <div class="hero-overflow">GUIDE<br>HUB</div>
   </div>
 
-  <div class="footer">SIRIAI · Iconic Movement · 2026</div>
+  <!-- INFO ROW -->
+  <div class="info-row">
+    <div class="info-cell">
+      <div class="info-label">Guides</div>
+      <div class="info-value">03</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Status</div>
+      <div class="info-value"><span class="live-dot"></span>All Live</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Campaign</div>
+      <div class="info-value">2026</div>
+    </div>
+  </div>
+
+  <!-- SECTION HEADER -->
+  <div class="section-head">
+    <span class="ko">콘텐츠 가이드</span>
+    <span class="en">Content Guidelines</span>
+  </div>
+
+  <!-- GUIDE ROWS -->
+  <a class="row" href="https://id-siriai-guide.vercel.app/guide-1.html">
+    <span class="row-num">01</span>
+    <div class="row-body">
+      <div class="row-title">ID 제공용</div>
+      <div class="row-sub">병원 전달용 표준 가이드라인</div>
+    </div>
+    <div class="row-right">
+      <span class="status"><span class="live-dot"></span>Live</span>
+      <button class="copy" type="button" data-url="https://id-siriai-guide.vercel.app/guide-1.html" aria-label="링크 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      </button>
+      <span class="row-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="row" href="https://id-siriai-guide.vercel.app/guide-2.html">
+    <span class="row-num">02</span>
+    <div class="row-body">
+      <div class="row-title">시술 · 수술 진행형</div>
+      <div class="row-sub">방문 체험 · 시술 콘텐츠 가이드</div>
+    </div>
+    <div class="row-right">
+      <span class="status"><span class="live-dot"></span>Live</span>
+      <button class="copy" type="button" data-url="https://id-siriai-guide.vercel.app/guide-2.html" aria-label="링크 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      </button>
+      <span class="row-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="row" href="https://id-siriai-guide.vercel.app/guide-3.html">
+    <span class="row-num">03</span>
+    <div class="row-body">
+      <div class="row-title">비방문 정보 · 브랜딩형</div>
+      <div class="row-sub">정보성 · 브랜딩 콘텐츠 가이드</div>
+    </div>
+    <div class="row-right">
+      <span class="status"><span class="live-dot"></span>Live</span>
+      <button class="copy" type="button" data-url="https://id-siriai-guide.vercel.app/guide-3.html" aria-label="링크 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      </button>
+      <span class="row-arrow">→</span>
+    </div>
+  </a>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <span class="foot-brand">SIRIAI</span>
+    <span class="foot-meta">Iconic Movement · 2026</span>
+  </div>
 
 </div>
+
+<div class="toast" id="toast"><span>✓</span><span id="toast-text">링크가 복사되었습니다</span></div>
+
+<script>
+  (function () {
+    var toast = document.getElementById('toast');
+    var toastText = document.getElementById('toast-text');
+    var timer;
+
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(function () { toast.classList.remove('show'); }, 1900);
+    }
+
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var url = btn.getAttribute('data-url');
+        var done = function () { showToast('링크가 복사되었습니다'); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done).catch(function () { fallback(url); done(); });
+        } else { fallback(url); done(); }
+      });
+    });
+
+    function fallback(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  })();
+</script>
 </body>
 </html>
